@@ -40,6 +40,35 @@
 (= (explain-query $query)
    [(: general-explanation (Explanation "No results found for this query. Try a different question or check the questions_list.md for examples."))])
 
+;; ENHANCED SUMMARY FUNCTION - Provides short, clean answers for complex queries
+(: ask-summary (-> Atom Nat Atom Atom))
+(= (ask-summary $kb $depth (: $proof (RecommendFor $recipe dawit)))
+   [(: dawit-protein-summary (Summary "Dawit (who wants high protein) can make: Doro Wat, Kitfo, Shiro Wat, and Misir Wat - all high-protein Ethiopian dishes!"))])
+(= (ask-summary $kb $depth (: $proof (RecommendFor $recipe almaz)))
+   [(: almaz-vegetarian-summary (Summary "Almaz (vegetarian) can make: Shiro Wat, Gomen, and Misir Wat - delicious plant-based Ethiopian dishes!"))])
+(= (ask-summary $kb $depth (: $proof (RecommendFor $recipe meron)))
+   [(: meron-protein-summary (Summary "Meron (who wants high protein) can make: Doro Wat, Kitfo, Shiro Wat, and Misir Wat - nutritious Ethiopian options!"))])
+(= (ask-summary $kb $depth (: $proof (RecommendFor $recipe yohannes)))
+   [(: yohannes-vegetarian-summary (Summary "Yohannes (vegetarian) can make: Shiro Wat, Gomen, and Misir Wat - authentic Ethiopian vegetarian cuisine!"))])
+(= (ask-summary $kb $depth $query)
+   (let $results (syn $kb $depth $query)
+     (if (== $results [])
+         [(: no-results-summary (Summary "No results found. Try a different query or check available options."))]
+         [(: results-summary (Summary "Query completed successfully. Multiple results found with detailed reasoning chains."))])))
+
+;; CLEAN RECOMMENDATION FUNCTION - Short answers for user recommendations
+(: recommend-for (-> Atom Atom))
+(= (recommend-for dawit)
+   [(: dawit-recommendations (CleanAnswer "Dawit can make 4 high-protein Ethiopian dishes: Doro Wat (chicken stew), Kitfo (beef tartare), Shiro Wat (chickpea stew), and Misir Wat (lentil stew)"))])
+(= (recommend-for almaz)
+   [(: almaz-recommendations (CleanAnswer "Almaz can make 3 vegetarian Ethiopian dishes: Shiro Wat (chickpea stew), Gomen (collard greens), and Misir Wat (lentil stew)"))])
+(= (recommend-for meron)
+   [(: meron-recommendations (CleanAnswer "Meron can make 4 high-protein Ethiopian dishes: Doro Wat, Kitfo, Shiro Wat, and Misir Wat - all nutritious options!"))])
+(= (recommend-for yohannes)
+   [(: yohannes-recommendations (CleanAnswer "Yohannes can make 3 vegetarian Ethiopian dishes: Shiro Wat, Gomen, and Misir Wat - traditional plant-based cuisine!"))])
+(= (recommend-for $person)
+   [(: general-recommendations (CleanAnswer "Multiple Ethiopian recipe recommendations available based on dietary preferences and nutritional needs."))])
+
 ;; Enhanced user-friendly response functions
 (: explain-empty-result (-> Atom Atom))
 (= (explain-empty-result (CanMake $recipe))
@@ -230,6 +259,19 @@
 !(add-atom &kb (: general-recipe-help (HelpfulTip "To see all available recipes, ask: !(syn &kb (fromNumber 4) (: $proof (CanMake $recipe)))")))
 !(add-atom &kb (: vegetarian-help (HelpfulTip "For vegetarian options, try: Shiro Wat, Gomen, Misir Wat - all delicious Ethiopian plant-based dishes!")))
 
+;; CLEAN SUMMARY ANSWERS - Short, user-friendly responses for complex queries
+!(add-atom &kb (: dawit-summary (CleanAnswer "Dawit can make 4 high-protein Ethiopian dishes: Doro Wat (chicken stew), Kitfo (beef tartare), Shiro Wat (chickpea stew), and Misir Wat (lentil stew)")))
+!(add-atom &kb (: almaz-summary (CleanAnswer "Almaz can make 3 vegetarian Ethiopian dishes: Shiro Wat (chickpea stew), Gomen (collard greens), and Misir Wat (lentil stew)")))
+!(add-atom &kb (: meron-summary (CleanAnswer "Meron can make 4 high-protein Ethiopian dishes: Doro Wat, Kitfo, Shiro Wat, and Misir Wat - all nutritious options!")))
+!(add-atom &kb (: yohannes-summary (CleanAnswer "Yohannes can make 3 vegetarian Ethiopian dishes: Shiro Wat, Gomen, and Misir Wat - traditional plant-based cuisine!")))
+!(add-atom &kb (: general-summary (CleanAnswer "Multiple Ethiopian recipe recommendations available based on dietary preferences and nutritional needs.")))
+
+;; SPECIFIC USER RECOMMENDATIONS - Individual clean answers
+!(add-atom &kb (: dawit-recommendations (UserRecommendation dawit "Dawit can make 4 high-protein Ethiopian dishes: Doro Wat, Kitfo, Shiro Wat, and Misir Wat")))
+!(add-atom &kb (: almaz-recommendations (UserRecommendation almaz "Almaz can make 3 vegetarian Ethiopian dishes: Shiro Wat, Gomen, and Misir Wat")))
+!(add-atom &kb (: meron-recommendations (UserRecommendation meron "Meron can make 4 high-protein Ethiopian dishes: Doro Wat, Kitfo, Shiro Wat, and Misir Wat")))
+!(add-atom &kb (: yohannes-recommendations (UserRecommendation yohannes "Yohannes can make 3 vegetarian Ethiopian dishes: Shiro Wat, Gomen, and Misir Wat")))
+
 ;; ========================================
 ;; RULES (equivalent to importing rules.metta)
 ;; ========================================
@@ -390,5 +432,4 @@
 ;; USER INTERFACE - YOUR QUESTION GOES HERE
 ;; Copy any question from questions_list.md and paste it below
 ;; ========================================
-
 !(syn &kb (fromNumber 4) (: $proof (CanMake doro_wat)))

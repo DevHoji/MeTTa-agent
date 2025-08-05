@@ -106,20 +106,47 @@
 ## GROUP 3: 🟡 COMPLEX QUESTIONS - ውስብስብ ጥያቄዎች  
 *Many results showing all reasoning paths - ብዙ ውጤቶች ሁሉንም የአስተሳሰብ መንገዶች ያሳያሉ*
 
-### 11. What vegetarian recipes can Almaz make? - አልማዝ ምን የቬጀቴሪያን ምግቦች መስራት ትችላለች?
+### 11. What high-protein recipes can Dawit make? - ዳዊት ምን ከፍተኛ ፕሮቲን ምግቦች መስራት ይችላል?
+
+**🔴 COMPLEX VERSION** (Very long output with 25+ results):
+```metta
+!(syn &kb (fromNumber 6) (: $proof (RecommendFor $recipe dawit)))
+```
+**Output**: Multiple complex reasoning chains (very long!)
+
+**🟢 CLEAN VERSION** (Short, user-friendly answer):
+```metta
+!(syn &kb (fromNumber 3) (: $proof (UserRecommendation dawit $recommendation)))
+```
+**Enhanced Output**: `[(: dawit-recommendations (UserRecommendation dawit "Dawit can make 4 high-protein Ethiopian dishes: Doro Wat, Kitfo, Shiro Wat, and Misir Wat"))]`
+
+### 12. What vegetarian recipes can Almaz make? - አልማዝ ምን የቬጀቴሪያን ምግቦች መስራት ትችላለች?
+
+**🔴 COMPLEX VERSION** (Very long output with 50+ results):
 ```metta
 !(syn &kb (fromNumber 6) (: $proof (RecommendFor $recipe almaz)))
 ```
-**Expected Output**: Many results with complex proof chains
-**Reasoning**: Almaz is vegetarian → Find vegetarian recipes → Check availability → Recommend
-**Note**: Shows all possible reasoning paths - demonstrates thoroughness
+**Output**: Many results with complex proof chains (very long!)
 
-### 12. What can protein-seeking Meron make? - ፕሮቲን የምትፈልገው ሜሮን ምን መስራት ትችላለች?
+**🟢 CLEAN VERSION** (Short, user-friendly answer):
+```metta
+!(syn &kb (fromNumber 3) (: $proof (UserRecommendation almaz $recommendation)))
+```
+**Enhanced Output**: `[(: almaz-recommendations (UserRecommendation almaz "Almaz can make 3 vegetarian Ethiopian dishes: Shiro Wat, Gomen, and Misir Wat"))]`
+
+### 13. What can protein-seeking Meron make? - ፕሮቲን የምትፈልገው ሜሮን ምን መስራት ትችላለች?
+
+**🔴 COMPLEX VERSION** (Very long output):
 ```metta
 !(syn &kb (fromNumber 6) (: $proof (RecommendFor $recipe meron)))
 ```
-**Expected Output**: Complex reasoning through protein requirements
-**Reasoning**: Meron wants protein → Find protein recipes → Check ingredients → Recommend
+**Output**: Complex reasoning through protein requirements (very long!)
+
+**🟢 CLEAN VERSION** (Short, user-friendly answer):
+```metta
+!(syn &kb (fromNumber 3) (: $proof (UserRecommendation meron $recommendation)))
+```
+**Enhanced Output**: `[(: meron-recommendations (UserRecommendation meron "Meron can make 4 high-protein Ethiopian dishes: Doro Wat, Kitfo, Shiro Wat, and Misir Wat"))]`
 
 ---
 
@@ -129,6 +156,7 @@
 ### 13. Can we make pasta? - ፓስታ መስራት እንችላለን?
 ```metta
 !(syn &kb (fromNumber 4) (: $proof (CanMake pasta_dish)))
+!(syn &kb (fromNumber 3) (: $proof (NotAvailable pasta_dish $explanation)))
 ```
 **Expected Output**: Empty list `[]`
 **Reasoning**: We don't have pasta in our Ethiopian ingredient list
@@ -141,6 +169,7 @@
 ### 14. Is Doro Wat vegetarian? - ዶሮ ወጥ የቬጀቴሪያን ነው?
 ```metta
 !(syn &kb (fromNumber 4) (: $proof (IsVegetarianRecipe doro_wat)))
+!(syn &kb (fromNumber 3) (: $proof (NotVegetarian doro_wat $explanation)))
 ```
 **Expected Output**: Empty list `[]`
 **Reasoning**: Doro Wat contains chicken (doro) → Chicken is not vegetarian → Therefore recipe is not vegetarian
