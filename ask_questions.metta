@@ -29,8 +29,37 @@
           ((: $prfarg $prms) (syn $kb $k (: $prfarg $prms))))
      (: ($prfabs $prfarg) $ccln)))
 
-;; Note: Some complex queries may produce many results
-;; For cleaner output, use simpler queries or check questions_list.md for guidance
+;; Enhanced user-friendly response functions
+(: explain-empty-result (-> Atom Atom))
+(= (explain-empty-result (CanMake $recipe))
+   (NoIngredientsAvailable $recipe "Sorry, we don't have the required ingredients to make this recipe. Check our available ingredients with: !(syn &kb (fromNumber 3) (: $proof (HasIngredient $ingredient)))"))
+
+(= (explain-empty-result (IsVegetarianRecipe $recipe))
+   (NotVegetarian $recipe "This recipe contains non-vegetarian ingredients. Try our vegetarian recipes instead!"))
+
+(= (explain-empty-result (NutritionalValue $recipe $nutrition))
+   (NoNutritionalInfo $recipe $nutrition "This recipe doesn't have the requested nutritional property. Try asking about ingredient properties instead."))
+
+(= (explain-empty-result $query)
+   (NoResultsFound $query "No results found for this query. Try a different question or check the questions_list.md for examples."))
+
+;; Enhanced query function with intelligent responses
+(: ask-smart (-> Atom Nat Atom Atom))
+(= (ask-smart $kb $depth $query)
+   (let $results (syn $kb $depth $query)
+     (if (== $results [])
+         (explain-empty-result $query)
+         $results)))
+
+;; Recipe suggestion system
+(: suggest-alternatives (-> Atom Atom))
+(= (suggest-alternatives $recipe)
+   (AlternativeRecipes "Try these Ethiopian dishes instead: Doro Wat, Shiro Wat, Gomen, Misir Wat, or Kitfo!"))
+
+;; Ingredient availability checker
+(: check-missing-ingredients (-> Atom Atom))
+(= (check-missing-ingredients $recipe)
+   (MissingIngredients $recipe "Some ingredients are not available. Check what we have with ingredient queries."))
 
 ;; ========================================
 ;; KNOWLEDGE BASE (equivalent to importing knowledge_base.metta)
@@ -134,6 +163,38 @@
 !(add-atom &kb (: user-yohannes (IsVegetarian yohannes)))    ;; Yohannes is vegetarian - ዮሐንስ
 !(add-atom &kb (: user-meron (WantsNutrition meron high_protein))) ;; Meron wants protein - ሜሮን
 
+;; ENHANCED CULTURAL AND NUTRITIONAL KNOWLEDGE - የላቀ ባህላዊ እና የተመጋቢነት እውቀት
+;; Advanced ingredient properties for sophisticated reasoning
+
+;; Spice heat levels - የቅመማ ቅመም ሙቀት ደረጃዎች
+!(add-atom &kb (: berbere-hot (HeatLevel berbere very_hot)))     ;; Berbere is very hot
+!(add-atom &kb (: mitmita-hot (HeatLevel mitmita extremely_hot))) ;; Mitmita is extremely hot
+
+;; Ingredient origins and cultural significance - የንጥረ ነገር ምንጮች እና ባህላዊ ጠቀሜታ
+!(add-atom &kb (: berbere-traditional (IsCulturallySignificant berbere)))
+!(add-atom &kb (: injera-staple (IsStapleFood injera)))
+!(add-atom &kb (: doro-ceremonial (IsCeremonialFood doro)))
+
+;; Nutritional density and health benefits - የተመጋቢነት ጥግግት እና የጤና ጥቅሞች
+!(add-atom &kb (: misir-fiber (HasNutrition misir high_fiber)))
+!(add-atom &kb (: gomen-vitamins (HasNutrition gomen high_vitamins)))
+!(add-atom &kb (: kik-minerals (HasNutrition kik high_minerals)))
+
+;; Cooking techniques and preparation methods - የማብሰያ ዘዴዎች እና የዝግጅት ዘዴዎች
+!(add-atom &kb (: injera-fermented (PreparationMethod injera fermentation)))
+!(add-atom &kb (: berbere-roasted (PreparationMethod berbere roasting)))
+!(add-atom &kb (: kitfo-raw (PreparationMethod kitfo raw_preparation)))
+
+;; Meal timing and cultural context - የምግብ ጊዜ እና ባህላዊ አውድ
+!(add-atom &kb (: doro-wat-special (IsSpecialOccasionFood doro_wat)))
+!(add-atom &kb (: shiro-everyday (IsEverydayFood shiro_wat)))
+!(add-atom &kb (: kitfo-luxury (IsLuxuryFood kitfo)))
+
+;; Storage and preservation properties - የማከማቻ እና የመጠበቂያ ባህሪያት
+!(add-atom &kb (: berbere-long-lasting (StorageLife berbere long)))
+!(add-atom &kb (: injera-short-lasting (StorageLife injera short)))
+!(add-atom &kb (: shiro-powder-stable (StorageLife shiro very_long)))
+
 ;; ========================================
 ;; RULES (equivalent to importing rules.metta)
 ;; ========================================
@@ -233,9 +294,66 @@
     (-> (ContainsName $recipe wat)
         (IsEthiopianDish $recipe))))
 
+;; ADVANCED ENHANCEMENT RULES - Making the agent more intelligent
+;; የላቀ ማሻሻያ ህጎች
+
+;; Rule: Recipe difficulty assessment based on ingredient complexity
+!(add-atom &kb (: difficulty-assessment-rule
+    (-> (RequiresIngredient $recipe $ingredient)
+        (-> (CookingComplexity $ingredient complex)
+            (IsDifficult $recipe)))))
+
+;; Rule: Recipe is easy if all ingredients are simple
+!(add-atom &kb (: easy-recipe-rule
+    (-> (RequiresIngredient $recipe $ingredient)
+        (-> (CookingComplexity $ingredient simple)
+            (IsEasy $recipe)))))
+
+;; Rule: Nutritional completeness - recipes with multiple nutrition types
+!(add-atom &kb (: complete-nutrition-rule
+    (-> (NutritionalValue $recipe high_protein)
+        (-> (IsHealthyRecipe $recipe)
+            (IsNutritionallyComplete $recipe)))))
+
+;; Rule: Cultural authenticity - traditional Ethiopian dishes
+!(add-atom &kb (: authenticity-rule
+    (-> (IsEthiopianDish $recipe)
+        (-> (ServedWith $recipe injera)
+            (IsAuthentic $recipe)))))
+
+;; Rule: Beginner-friendly recommendations
+!(add-atom &kb (: beginner-friendly-rule
+    (-> (IsEasy $recipe)
+        (-> (IsHealthyRecipe $recipe)
+            (IsBeginner-Friendly $recipe)))))
+
+;; Rule: Advanced cook recommendations
+!(add-atom &kb (: advanced-cook-rule
+    (-> (IsDifficult $recipe)
+        (-> (IsAuthentic $recipe)
+            (IsAdvanced $recipe)))))
+
+;; Rule: Meal planning - complete meal suggestions
+!(add-atom &kb (: complete-meal-rule
+    (-> (IsNutritionallyComplete $recipe)
+        (-> (ServedWith $recipe injera)
+            (IsCompleteMeal $recipe)))))
+
+;; Rule: Seasonal appropriateness (spicy for cold weather)
+!(add-atom &kb (: seasonal-rule
+    (-> (IsSpicy $recipe)
+        (-> (IsHealthyRecipe $recipe)
+            (IsWinterAppropriate $recipe)))))
+
+;; Rule: Quick meal recommendations for busy people
+!(add-atom &kb (: quick-meal-rule
+    (-> (CookingTime $recipe quick)
+        (-> (IsHealthyRecipe $recipe)
+            (IsBusyPersonFriendly $recipe)))))
+
 ;; ========================================
 ;; USER INTERFACE - YOUR QUESTION GOES HERE
 ;; Copy any question from questions_list.md and paste it below
 ;; ========================================
 
-!(syn &kb (fromNumber 5) (: $proof (IsHealthyRecipe gomen_dish)))
+!(syn &kb (fromNumber 3) (: $proof (IsCulturallySignificant $ingredient)))
