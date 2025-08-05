@@ -132,6 +132,11 @@
 ```
 **Expected Output**: Empty list `[]`
 **Reasoning**: We don't have pasta in our Ethiopian ingredient list
+**🚀 NEW: Get helpful explanation instead of empty result:**
+```metta
+!(syn &kb (fromNumber 3) (: $proof (NotAvailable pasta_dish $explanation)))
+```
+**Enhanced Output**: `[(: pasta-not-available (NotAvailable pasta_dish "We don't have pasta in our Ethiopian ingredient list. Try our traditional dishes: Doro Wat, Shiro Wat, Gomen, Misir Wat, or Kitfo!"))]`
 
 ### 14. Is Doro Wat vegetarian? - ዶሮ ወጥ የቬጀቴሪያን ነው?
 ```metta
@@ -139,6 +144,11 @@
 ```
 **Expected Output**: Empty list `[]`
 **Reasoning**: Doro Wat contains chicken (doro) → Chicken is not vegetarian → Therefore recipe is not vegetarian
+**🚀 NEW: Get helpful explanation instead of empty result:**
+```metta
+!(syn &kb (fromNumber 3) (: $proof (NotVegetarian doro_wat $explanation)))
+```
+**Enhanced Output**: `[(: doro-not-vegetarian (NotVegetarian doro_wat "Doro Wat contains chicken (doro) which is not vegetarian. Try our vegetarian dishes: Shiro Wat, Gomen, or Misir Wat!"))]`
 
 ---
 
@@ -203,23 +213,42 @@
 
 ---
 
-## 🎯 ENHANCED USER EXPERIENCE FEATURES
+## 🎯 ENHANCED USER EXPERIENCE FEATURES - የተሻሻለ ተጠቃሚ ተሞክሮ
 
-### Smart Error Messages - ብልህ የስህተት መልዕክቶች
-When queries return no results, the agent now provides helpful explanations instead of empty lists!
+### 🚀 Smart Explanations Instead of Empty Results - ከባዶ ውጤቶች ይልቅ ብልህ ማብራሪያዎች
+**BEFORE**: Queries returned empty `[]` - not helpful!
+**NOW**: Get helpful explanations with suggestions!
 
-**Example**: Instead of `[]` for unavailable recipes, get:
-`(NoIngredientsAvailable pasta_dish "Sorry, we don't have the required ingredients to make this recipe. Check our available ingredients with: !(syn &kb (fromNumber 3) (: $proof (HasIngredient $ingredient)))")`
+**Example 1 - Unavailable Recipe:**
+- **Old way**: `!(syn &kb (fromNumber 4) (: $proof (CanMake pasta_dish)))` → `[]`
+- **New way**: `!(syn &kb (fromNumber 3) (: $proof (NotAvailable pasta_dish $explanation)))`
+- **Result**: `"We don't have pasta in our Ethiopian ingredient list. Try our traditional dishes: Doro Wat, Shiro Wat, Gomen, Misir Wat, or Kitfo!"`
 
-### Intelligent Suggestions - ብልህ ጥቆማዎች
-The agent can now suggest alternatives and provide cooking guidance!
+**Example 2 - Non-Vegetarian Query:**
+- **Old way**: `!(syn &kb (fromNumber 4) (: $proof (IsVegetarianRecipe doro_wat)))` → `[]`
+- **New way**: `!(syn &kb (fromNumber 3) (: $proof (NotVegetarian doro_wat $explanation)))`
+- **Result**: `"Doro Wat contains chicken (doro) which is not vegetarian. Try our vegetarian dishes: Shiro Wat, Gomen, or Misir Wat!"`
 
-### Cultural Context Awareness - የባህል አውድ ግንዛቤ
+### 🧠 Intelligent Alternative Suggestions - ብልህ አማራጭ ጥቆማዎች
+The agent now provides:
+- **Recipe alternatives** when requested dish isn't available
+- **Vegetarian alternatives** when querying non-vegetarian dishes
+- **Traditional Ethiopian suggestions** instead of foreign cuisines
+- **Helpful tips** for finding more information
+
+### 🇪🇹 Cultural Context Awareness - የባህል አውድ ግንዛቤ
 The agent understands:
-- Special occasion foods vs everyday meals
-- Spice heat levels for cooking guidance
-- Cultural significance of ingredients
-- Traditional serving methods
+- **Special occasion foods** vs everyday meals
+- **Spice heat levels** for cooking guidance
+- **Cultural significance** of ingredients
+- **Traditional serving methods** and customs
+
+### 📚 Built-in Help System - የተገነባ እርዳታ ስርዓት
+Get helpful tips:
+```metta
+!(syn &kb (fromNumber 3) (: $proof (HelpfulTip $tip)))
+```
+**Result**: Practical guidance for using the agent effectively!
 
 ---
 

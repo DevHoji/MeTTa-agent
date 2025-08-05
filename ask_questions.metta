@@ -29,6 +29,17 @@
           ((: $prfarg $prms) (syn $kb $k (: $prfarg $prms))))
      (: ($prfabs $prfarg) $ccln)))
 
+;; Simple explanation lookup function
+(: explain-query (-> Atom Atom))
+(= (explain-query (CanMake pasta_dish))
+   [(: pasta-explanation (Explanation "We don't have pasta in our Ethiopian ingredient list. Try our traditional dishes: Doro Wat, Shiro Wat, Gomen, Misir Wat, or Kitfo!"))])
+(= (explain-query (IsVegetarianRecipe doro_wat))
+   [(: doro-wat-not-veg-explanation (Explanation "Doro Wat contains chicken (doro) which is not vegetarian. Try our vegetarian dishes: Shiro Wat, Gomen, or Misir Wat!"))])
+(= (explain-query (IsVegetarianRecipe kitfo))
+   [(: kitfo-not-veg-explanation (Explanation "Kitfo is made with raw beef (siga) which is not vegetarian. Try our plant-based Ethiopian dishes!"))])
+(= (explain-query $query)
+   [(: general-explanation (Explanation "No results found for this query. Try a different question or check the questions_list.md for examples."))])
+
 ;; Enhanced user-friendly response functions
 (: explain-empty-result (-> Atom Atom))
 (= (explain-empty-result (CanMake $recipe))
@@ -195,6 +206,30 @@
 !(add-atom &kb (: injera-short-lasting (StorageLife injera short)))
 !(add-atom &kb (: shiro-powder-stable (StorageLife shiro very_long)))
 
+;; EXPLANATION FACTS - User-friendly explanations for empty results
+;; የማብራሪያ እውነታዎች - ለባዶ ውጤቶች ተጠቃሚ ተስማሚ ማብራሪያዎች
+
+;; Explanations for unavailable recipes - instead of empty []
+!(add-atom &kb (: pasta-explanation (Explanation "We don't have pasta in our Ethiopian ingredient list. Try our traditional dishes: Doro Wat, Shiro Wat, Gomen, Misir Wat, or Kitfo!")))
+!(add-atom &kb (: pizza-explanation (Explanation "Pizza is not part of Ethiopian cuisine. Try our authentic Ethiopian dishes instead!")))
+
+;; Explanations for non-vegetarian recipes - instead of empty []
+!(add-atom &kb (: doro-wat-not-veg-explanation (Explanation "Doro Wat contains chicken (doro) which is not vegetarian. Try our vegetarian dishes: Shiro Wat, Gomen, or Misir Wat!")))
+!(add-atom &kb (: kitfo-not-veg-explanation (Explanation "Kitfo is made with raw beef (siga) which is not vegetarian. Try our plant-based Ethiopian dishes!")))
+
+;; Enhanced explanation system: Add negative facts that provide helpful explanations
+!(add-atom &kb (: pasta-not-available (NotAvailable pasta_dish "We don't have pasta in our Ethiopian ingredient list. Try our traditional dishes: Doro Wat, Shiro Wat, Gomen, Misir Wat, or Kitfo!")))
+!(add-atom &kb (: pizza-not-available (NotAvailable pizza "Pizza is not part of Ethiopian cuisine. Try our authentic Ethiopian dishes instead!")))
+!(add-atom &kb (: burger-not-available (NotAvailable burger "Burgers are not traditional Ethiopian food. Try our authentic dishes like Doro Wat or Kitfo!")))
+
+!(add-atom &kb (: doro-not-vegetarian (NotVegetarian doro_wat "Doro Wat contains chicken (doro) which is not vegetarian. Try our vegetarian dishes: Shiro Wat, Gomen, or Misir Wat!")))
+!(add-atom &kb (: kitfo-not-vegetarian (NotVegetarian kitfo "Kitfo is made with raw beef (siga) which is not vegetarian. Try our plant-based Ethiopian dishes!")))
+
+;; General helpful explanations
+!(add-atom &kb (: general-ingredient-help (HelpfulTip "To see all available ingredients, ask: !(syn &kb (fromNumber 3) (: $proof (HasIngredient $ingredient)))")))
+!(add-atom &kb (: general-recipe-help (HelpfulTip "To see all available recipes, ask: !(syn &kb (fromNumber 4) (: $proof (CanMake $recipe)))")))
+!(add-atom &kb (: vegetarian-help (HelpfulTip "For vegetarian options, try: Shiro Wat, Gomen, Misir Wat - all delicious Ethiopian plant-based dishes!")))
+
 ;; ========================================
 ;; RULES (equivalent to importing rules.metta)
 ;; ========================================
@@ -356,4 +391,4 @@
 ;; Copy any question from questions_list.md and paste it below
 ;; ========================================
 
-!(syn &kb (fromNumber 3) (: $proof (IsCulturallySignificant $ingredient)))
+!(syn &kb (fromNumber 4) (: $proof (CanMake doro_wat)))
