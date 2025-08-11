@@ -10,163 +10,126 @@
 ;; INGREDIENT FACTS
 ;; ========================================
 
-;; Proteins
-!(add-atom &kb (: protein-chicken (HasProperty chicken protein)))
-!(add-atom &kb (: protein-beef (HasProperty beef protein)))
-!(add-atom &kb (: protein-fish (HasProperty fish protein)))
-!(add-atom &kb (: protein-eggs (HasProperty eggs protein)))
-!(add-atom &kb (: protein-tofu (HasProperty tofu protein)))
-!(add-atom &kb (: protein-beans (HasProperty beans protein)))
-!(add-atom &kb (: protein-lentils (HasProperty lentils protein)))
+     
 
-;; Vegetables
-!(add-atom &kb (: veg-tomato (HasProperty tomato vegetable)))
-!(add-atom &kb (: veg-onion (HasProperty onion vegetable)))
-!(add-atom &kb (: veg-garlic (HasProperty garlic vegetable)))
-!(add-atom &kb (: veg-carrot (HasProperty carrot vegetable)))
-!(add-atom &kb (: veg-broccoli (HasProperty broccoli vegetable)))
-!(add-atom &kb (: veg-spinach (HasProperty spinach vegetable)))
-!(add-atom &kb (: veg-bell-pepper (HasProperty bell_pepper vegetable)))
-!(add-atom &kb (: veg-mushroom (HasProperty mushroom vegetable)))
 
-;; Grains and Starches
-!(add-atom &kb (: grain-rice (HasProperty rice grain)))
-!(add-atom &kb (: grain-pasta (HasProperty pasta grain)))
-!(add-atom &kb (: grain-bread (HasProperty bread grain)))
-!(add-atom &kb (: grain-potato (HasProperty potato starch)))
-!(add-atom &kb (: grain-quinoa (HasProperty quinoa grain)))
+!(add-atom &kb (: doro-wat-doro (RequiresIngredient doro_wat doro)))
+!(add-atom &kb (: doro-wat-berbere (RequiresIngredient doro_wat berbere)))
+!(add-atom &kb (: doro-wat-onion (RequiresIngredient doro_wat onion)))
+!(add-atom &kb (: doro-wat-niter (RequiresIngredient doro_wat niter_kibbeh)))
 
-;; Dairy
-!(add-atom &kb (: dairy-cheese (HasProperty cheese dairy)))
-!(add-atom &kb (: dairy-milk (HasProperty milk dairy)))
-!(add-atom &kb (: dairy-butter (HasProperty butter dairy)))
-!(add-atom &kb (: dairy-yogurt (HasProperty yogurt dairy)))
+!(add-atom &kb (: kitfo-siga (RequiresIngredient kitfo siga)))
+!(add-atom &kb (: kitfo-mitmita (RequiresIngredient kitfo mitmita)))
+!(add-atom &kb (: kitfo-niter (RequiresIngredient kitfo niter_kibbeh)))
 
-;; Spices and Seasonings
-!(add-atom &kb (: spice-salt (HasProperty salt seasoning)))
-!(add-atom &kb (: spice-pepper (HasProperty pepper seasoning)))
-!(add-atom &kb (: spice-basil (HasProperty basil herb)))
-!(add-atom &kb (: spice-oregano (HasProperty oregano herb)))
-!(add-atom &kb (: spice-thyme (HasProperty thyme herb)))
-!(add-atom &kb (: spice-cumin (HasProperty cumin spice)))
-!(add-atom &kb (: spice-paprika (HasProperty paprika spice)))
+!(add-atom &kb (: shiro-wat-shiro (RequiresIngredient shiro_wat shiro)))
+!(add-atom &kb (: shiro-wat-onion (RequiresIngredient shiro_wat onion)))
+!(add-atom &kb (: shiro-wat-garlic (RequiresIngredient shiro_wat garlic)))
 
-;; ========================================
-;; RECIPE INGREDIENT RELATIONSHIPS
-;; ========================================
+!(add-atom &kb (: gomen-gomen (RequiresIngredient gomen_dish gomen)))
+!(add-atom &kb (: gomen-garlic (RequiresIngredient gomen_dish garlic)))
+!(add-atom &kb (: gomen-ginger (RequiresIngredient gomen_dish ginger)))
 
-;; Pasta Carbonara
-!(add-atom &kb (: carbonara-pasta (RequiresIngredient pasta_carbonara pasta)))
-!(add-atom &kb (: carbonara-eggs (RequiresIngredient pasta_carbonara eggs)))
-!(add-atom &kb (: carbonara-cheese (RequiresIngredient pasta_carbonara cheese)))
-!(add-atom &kb (: carbonara-pepper (RequiresIngredient pasta_carbonara pepper)))
+!(add-atom &kb (: misir-wat-misir (RequiresIngredient misir_wat misir)))
+!(add-atom &kb (: misir-wat-berbere (RequiresIngredient misir_wat berbere)))
+!(add-atom &kb (: misir-wat-onion (RequiresIngredient misir_wat onion)))
 
-;; Chicken Stir Fry
-!(add-atom &kb (: stirfry-chicken (RequiresIngredient chicken_stirfry chicken)))
-!(add-atom &kb (: stirfry-broccoli (RequiresIngredient chicken_stirfry broccoli)))
-!(add-atom &kb (: stirfry-carrot (RequiresIngredient chicken_stirfry carrot)))
-!(add-atom &kb (: stirfry-garlic (RequiresIngredient chicken_stirfry garlic)))
-!(add-atom &kb (: stirfry-rice (RequiresIngredient chicken_stirfry rice)))
+!(add-atom &kb (: veg-shiro (IsVegetarian shiro)))          
+!(add-atom &kb (: veg-gomen (IsVegetarian gomen)))          
+!(add-atom &kb (: veg-misir (IsVegetarian misir)))           
+!(add-atom &kb (: veg-kik (IsVegetarian kik)))               
+!(add-atom &kb (: veg-atakilt (IsVegetarian atakilt)))       
+!(add-atom &kb (: veg-onion (IsVegetarian onion)))           
+!(add-atom &kb (: veg-garlic (IsVegetarian garlic)))        
+!(add-atom &kb (: veg-ginger (IsVegetarian ginger)))         
+!(add-atom &kb (: veg-injera (IsVegetarian injera)))         
 
-;; Vegetable Soup
-!(add-atom &kb (: soup-tomato (RequiresIngredient vegetable_soup tomato)))
-!(add-atom &kb (: soup-onion (RequiresIngredient vegetable_soup onion)))
-!(add-atom &kb (: soup-carrot (RequiresIngredient vegetable_soup carrot)))
-!(add-atom &kb (: soup-potato (RequiresIngredient vegetable_soup potato)))
-!(add-atom &kb (: soup-herbs (RequiresIngredient vegetable_soup thyme)))
+!(add-atom &kb (: protein-doro (HasProperty doro protein)))         
+!(add-atom &kb (: protein-siga (HasProperty siga protein)))         
+!(add-atom &kb (: protein-misir (HasProperty misir protein)))       
+!(add-atom &kb (: protein-kik (HasProperty kik protein)))           
+!(add-atom &kb (: protein-shiro (HasProperty shiro protein)))       
+!(add-atom &kb (: veg-gomen (HasProperty gomen vegetable)))         
+!(add-atom &kb (: veg-atakilt (HasProperty atakilt vegetable)))     
+!(add-atom &kb (: veg-onion (HasProperty onion vegetable)))         
+!(add-atom &kb (: spice-berbere (HasProperty berbere spice)))       
+!(add-atom &kb (: spice-mitmita (HasProperty mitmita spice)))       
+!(add-atom &kb (: grain-injera (HasProperty injera grain)))         
 
-;; Fish Tacos
-!(add-atom &kb (: tacos-fish (RequiresIngredient fish_tacos fish)))
-!(add-atom &kb (: tacos-tomato (RequiresIngredient fish_tacos tomato)))
-!(add-atom &kb (: tacos-onion (RequiresIngredient fish_tacos onion)))
-!(add-atom &kb (: tacos-pepper (RequiresIngredient fish_tacos bell_pepper)))
 
-;; Beef Curry
-!(add-atom &kb (: curry-beef (RequiresIngredient beef_curry beef)))
-!(add-atom &kb (: curry-onion (RequiresIngredient beef_curry onion)))
-!(add-atom &kb (: curry-tomato (RequiresIngredient beef_curry tomato)))
-!(add-atom &kb (: curry-cumin (RequiresIngredient beef_curry cumin)))
-!(add-atom &kb (: curry-rice (RequiresIngredient beef_curry rice)))
+!(add-atom &kb (: doro-protein (HasNutrition doro high_protein)))     
+!(add-atom &kb (: siga-protein (HasNutrition siga high_protein)))     
+!(add-atom &kb (: misir-protein (HasNutrition misir high_protein)))   
+!(add-atom &kb (: shiro-protein (HasNu trition shiro high_protein)))   
+!(add-atom &kb (: kik-protein (HasNutrition kik high_protein)))       
 
-;; Tofu Scramble (Vegan)
-!(add-atom &kb (: scramble-tofu (RequiresIngredient tofu_scramble tofu)))
-!(add-atom &kb (: scramble-spinach (RequiresIngredient tofu_scramble spinach)))
-!(add-atom &kb (: scramble-mushroom (RequiresIngredient tofu_scramble mushroom)))
-!(add-atom &kb (: scramble-garlic (RequiresIngredient tofu_scramble garlic)))
+!(add-atom &kb (: misir-wat-berbere (CookingComplexity misir_wat simple)))     
+!(add-atom &kb (: gomen-quick (CookingComplexity gomen simple)))     
+!(add-atom &kb (: atakilt-quick (CookingComplexity atakilt simple)))  
+!(add-atom &kb (: shiro-quick (CookingComplexity shiro simple)))      
+!(add-atom &kb (: injera-complex (CookingComplexity injera complex))) 
+!(add-atom &kb (: berbere-quick (CookingComplexity berbere simple)))  
 
-;; Lentil Salad
-!(add-atom &kb (: salad-lentils (RequiresIngredient lentil_salad lentils)))
-!(add-atom &kb (: salad-tomato (RequiresIngredient lentil_salad tomato)))
-!(add-atom &kb (: salad-onion (RequiresIngredient lentil_salad onion)))
-!(add-atom &kb (: salad-herbs (RequiresIngredient lentil_salad basil)))
+!(add-atom &kb (: gomen-healthy (IsHealthy gomen)))         
+!(add-atom &kb (: misir-healthy (IsHealthy misir)))         
+!(add-atom &kb (: atakilt-healthy (IsHealthy atakilt)))     
+!(add-atom &kb (: shiro-healthy (IsHealthy shiro)))         
+!(add-atom &kb (: kik-healthy (IsHealthy kik)))             
 
-;; ========================================
-;; DIETARY RESTRICTIONS
-;; ========================================
+!(add-atom &kb (: user-almaz (IsVegetarian almaz)))          
+!(add-atom &kb (: user-dawit (WantsNutrition dawit high_protein))) 
+!(add-atom &kb (: user-hanan (PrefersTime hanan quick)))     
+!(add-atom &kb (: user-yohannes (IsVegetarian yohannes)))    
+!(add-atom &kb (: user-meron (WantsNutrition meron high_protein))) 
 
-;; Vegetarian-friendly ingredients
-!(add-atom &kb (: veg-friendly-tofu (IsVegetarian tofu)))
-!(add-atom &kb (: veg-friendly-beans (IsVegetarian beans)))
-!(add-atom &kb (: veg-friendly-lentils (IsVegetarian lentils)))
-!(add-atom &kb (: veg-friendly-eggs (IsVegetarian eggs)))
-!(add-atom &kb (: veg-friendly-cheese (IsVegetarian cheese)))
-!(add-atom &kb (: veg-friendly-vegetables (IsVegetarian tomato)))
-!(add-atom &kb (: veg-friendly-vegetables2 (IsVegetarian onion)))
-!(add-atom &kb (: veg-friendly-vegetables3 (IsVegetarian carrot)))
-!(add-atom &kb (: veg-friendly-vegetables4 (IsVegetarian broccoli)))
-!(add-atom &kb (: veg-friendly-vegetables5 (IsVegetarian spinach)))
-!(add-atom &kb (: veg-friendly-grains (IsVegetarian rice)))
-!(add-atom &kb (: veg-friendly-grains2 (IsVegetarian pasta)))
 
-;; Vegan-friendly ingredients (no dairy, no eggs)
-!(add-atom &kb (: vegan-friendly-tofu (IsVegan tofu)))
-!(add-atom &kb (: vegan-friendly-beans (IsVegan beans)))
-!(add-atom &kb (: vegan-friendly-lentils (IsVegan lentils)))
-!(add-atom &kb (: vegan-friendly-vegetables (IsVegan tomato)))
-!(add-atom &kb (: vegan-friendly-vegetables2 (IsVegan onion)))
-!(add-atom &kb (: vegan-friendly-vegetables3 (IsVegan carrot)))
-!(add-atom &kb (: vegan-friendly-vegetables4 (IsVegan broccoli)))
-!(add-atom &kb (: vegan-friendly-vegetables5 (IsVegan spinach)))
-!(add-atom &kb (: vegan-friendly-grains (IsVegan rice)))
-!(add-atom &kb (: vegan-friendly-grains2 (IsVegan pasta)))
+!(add-atom &kb (: berbere-hot (HeatLevel berbere very_hot)))     
+!(add-atom &kb (: mitmita-hot (HeatLevel mitmita extremely_hot))) 
 
-;; ========================================
-;; COOKING METHODS AND TIMES
-;; ========================================
+!(add-atom &kb (: berbere-traditional (IsCulturallySignificant berbere)))
+!(add-atom &kb (: injera-staple (IsStapleFood injera)))
+!(add-atom &kb (: doro-ceremonial (IsCeremonialFood doro)))
 
-!(add-atom &kb (: quick-pasta (CookingTime pasta_carbonara quick)))
-!(add-atom &kb (: quick-stirfry (CookingTime chicken_stirfry quick)))
-!(add-atom &kb (: medium-soup (CookingTime vegetable_soup medium)))
-!(add-atom &kb (: quick-tacos (CookingTime fish_tacos quick)))
-!(add-atom &kb (: medium-curry (CookingTime beef_curry medium)))
-!(add-atom &kb (: quick-scramble (CookingTime tofu_scramble quick)))
-!(add-atom &kb (: quick-salad (CookingTime lentil_salad quick)))
+!(add-atom &kb (: misir-fiber (HasNutrition misir high_fiber)))
+!(add-atom &kb (: gomen-vitamins (HasNutrition gomen high_vitamins)))
+!(add-atom &kb (: kik-minerals (HasNutrition kik high_minerals)))
 
-;; ========================================
-;; CUISINE TYPES
-;; ========================================
+!(add-atom &kb (: injera-fermented (PreparationMethod injera fermentation)))
+!(add-atom &kb (: berbere-roasted (PreparationMethod berbere roasting)))
+!(add-atom &kb (: kitfo-raw (PreparationMethod kitfo raw_preparation)))
 
-!(add-atom &kb (: italian-pasta (CuisineType pasta_carbonara italian)))
-!(add-atom &kb (: asian-stirfry (CuisineType chicken_stirfry asian)))
-!(add-atom &kb (: comfort-soup (CuisineType vegetable_soup comfort)))
-!(add-atom &kb (: mexican-tacos (CuisineType fish_tacos mexican)))
-!(add-atom &kb (: indian-curry (CuisineType beef_curry indian)))
-!(add-atom &kb (: healthy-scramble (CuisineType tofu_scramble healthy)))
-!(add-atom &kb (: mediterranean-salad (CuisineType lentil_salad mediterranean)))
+!(add-atom &kb (: doro-wat-special (IsSpecialOccasionFood doro_wat)))
+!(add-atom &kb (: shiro-everyday (IsEverydayFood shiro_wat)))
+!(add-atom &kb (: kitfo-luxury (IsLuxuryFood kitfo)))
 
-;; ========================================
-;; NUTRITIONAL INFORMATION
-;; ========================================
+!(add-atom &kb (: berbere-long-lasting (StorageLife berbere long)))
+!(add-atom &kb (: injera-short-lasting (StorageLife injera short)))
+!(add-atom &kb (: shiro-powder-stable (StorageLife shiro very_long)))
 
-!(add-atom &kb (: high-protein-chicken (NutritionalValue chicken_stirfry high_protein)))
-!(add-atom &kb (: high-protein-beef (NutritionalValue beef_curry high_protein)))
-!(add-atom &kb (: high-protein-fish (NutritionalValue fish_tacos high_protein)))
-!(add-atom &kb (: high-protein-tofu (NutritionalValue tofu_scramble high_protein)))
-!(add-atom &kb (: high-protein-lentils (NutritionalValue lentil_salad high_protein)))
+!(add-atom &kb (: pasta-explanation (Explanation "We don't have pasta in our Ethiopian ingredient list. Try our traditional dishes: Doro Wat, Shiro Wat, Gomen, Misir Wat, or Kitfo!")))
+!(add-atom &kb (: pizza-explanation (Explanation "Pizza is not part of Ethiopian cuisine. Try our authentic Ethiopian dishes instead!")))
 
-!(add-atom &kb (: low-carb-stirfry (NutritionalValue chicken_stirfry low_carb)))
-!(add-atom &kb (: low-carb-tacos (NutritionalValue fish_tacos low_carb)))
-!(add-atom &kb (: low-carb-scramble (NutritionalValue tofu_scramble low_carb)))
+!(add-atom &kb (: doro-wat-not-veg-explanation (Explanation "Doro Wat contains chicken (doro) which is not vegetarian. Try our vegetarian dishes: Shiro Wat, Gomen, or Misir Wat!")))
+!(add-atom &kb (: kitfo-not-veg-explanation (Explanation "Kitfo is made with raw beef (siga) which is not vegetarian. Try our plant-based Ethiopian dishes!")))
 
-!(add-atom &kb (: high-fiber-soup (NutritionalValue vegetable_soup high_fiber)))
-!(add-atom &kb (: high-fiber-lentils (NutritionalValue lentil_salad high_fiber)))
+!(add-atom &kb (: pasta-not-available (NotAvailable pasta_dish "We don't have pasta in our Ethiopian ingredient list. Try our traditional dishes: Doro Wat, Shiro Wat, Gomen, Misir Wat, or Kitfo!")))
+!(add-atom &kb (: pizza-not-available (NotAvailable pizza "Pizza is not part of Ethiopian cuisine. Try our authentic Ethiopian dishes instead!")))
+!(add-atom &kb (: burger-not-available (NotAvailable burger "Burgers are not traditional Ethiopian food. Try our authentic dishes like Doro Wat or Kitfo!")))
+
+!(add-atom &kb (: doro-not-vegetarian (NotVegetarian doro_wat "Doro Wat contains chicken (doro) which is not vegetarian. Try our vegetarian dishes: Shiro Wat, Gomen, or Misir Wat!")))
+!(add-atom &kb (: kitfo-not-vegetarian (NotVegetarian kitfo "Kitfo is made with raw beef (siga) which is not vegetarian. Try our plant-based Ethiopian dishes!")))
+
+!(add-atom &kb (: general-ingredient-help (HelpfulTip "To see all available ingredients, ask: !(syn &kb (fromNumber 3) (: $proof (HasIngredient $ingredient)))")))
+!(add-atom &kb (: general-recipe-help (HelpfulTip "To see all available recipes, ask: !(syn &kb (fromNumber 4) (: $proof (CanMake $recipe)))")))
+!(add-atom &kb (: vegetarian-help (HelpfulTip "For vegetarian options, try: Shiro Wat, Gomen, Misir Wat - all delicious Ethiopian plant-based dishes!")))
+
+!(add-atom &kb (: dawit-summary (CleanAnswer "Dawit can make 4 high-protein Ethiopian dishes: Doro Wat (chicken stew), Kitfo (beef tartare), Shiro Wat (chickpea stew), and Misir Wat (lentil stew)")))
+!(add-atom &kb (: almaz-summary (CleanAnswer "Almaz can make 3 vegetarian Ethiopian dishes: Shiro Wat (chickpea stew), Gomen (collard greens), and Misir Wat (lentil stew)")))
+!(add-atom &kb (: meron-summary (CleanAnswer "Meron can make 4 high-protein Ethiopian dishes: Doro Wat, Kitfo, Shiro Wat, and Misir Wat - all nutritious options!")))
+!(add-atom &kb (: yohannes-summary (CleanAnswer "Yohannes can make 3 vegetarian Ethiopian dishes: Shiro Wat, Gomen, and Misir Wat - traditional plant-based cuisine!")))
+!(add-atom &kb (: general-summary (CleanAnswer "Multiple Ethiopian recipe recommendations available based on dietary preferences and nutritional needs.")))
+
+!(add-atom &kb (: dawit-recommendations (UserRecommendation dawit "Dawit can make 4 high-protein Ethiopian dishes: Doro Wat, Kitfo, Shiro Wat, and Misir Wat")))
+!(add-atom &kb (: almaz-recommendations (UserRecommendation almaz "Almaz can make 3 vegetarian Ethiopian dishes: Shiro Wat, Gomen, and Misir Wat")))
+!(add-atom &kb (: meron-recommendations (UserRecommendation meron "Meron can make 4 high-protein Ethiopian dishes: Doro Wat, Kitfo, Shiro Wat, and Misir Wat")))
+!(add-atom &kb (: yohannes-recommendations (UserRecommendation yohannes "Yohannes can make 3 vegetarian Ethiopian dishes: Shiro Wat, Gomen, and Misir Wat")))

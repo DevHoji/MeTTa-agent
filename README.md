@@ -1,30 +1,31 @@
-# Recipe Recommendation Agent - Cognitive Architecture Implementation
+# Ethiopian Recipe Recommendation Agent - Cognitive Architecture Implementation 🇪🇹
 
 ## Overview
 
-This project implements a **Recipe Recommendation Agent** using **symbolic cognitive architecture** principles with **backward chaining** reasoning. The agent demonstrates key concepts from cognitive architectures like ACT-R and Soar, implemented in the MeTTa programming language.
+This project implements an **Ethiopian Recipe Recommendation Agent** using **symbolic cognitive architecture** principles with **backward chaining** reasoning. The agent demonstrates key concepts from cognitive architectures like ACT-R and Soar, implemented in the MeTTa programming language with deep knowledge of Ethiopian cuisine.
 
 ## Cognitive Architecture Type
 
-**Symbolic Cognitive Architecture** - The agent uses:
-- Rule-based reasoning with explicit logical rules
-- Declarative knowledge (facts about ingredients, recipes, dietary restrictions)
-- Procedural knowledge (rules for making recommendations)
+**Symbolic Cognitive Architecture for Ethiopian Cuisine** - The agent uses:
+- Rule-based reasoning with explicit logical rules for Ethiopian recipes
+- Declarative knowledge (facts about Ethiopian ingredients, recipes, dietary restrictions)
+- Procedural knowledge (rules for making Ethiopian recipe recommendations)
 - Goal-directed backward chaining (similar to Soar's problem-space search)
 - Proof construction for explainable reasoning (similar to ACT-R's production traces)
+- Cultural intelligence about Ethiopian culinary traditions
 
 ## Project Structure
 
 ### Core Files
 
-1. **`ask_questions.metta`** - Interactive agent interface (main file to use)
-2. **`knowledge_base.metta`** - Comprehensive ingredient and recipe knowledge base
-3. **`rules.metta`** - Logical rules for recipe recommendation reasoning
-4. **`agent.metta`** - Advanced agent implementation with cognitive functions
+1. **`ask_questions.metta`** - Interactive Ethiopian recipe agent interface (main file to use)
+2. **`knowledge_base.metta`** - Comprehensive Ethiopian ingredient and recipe knowledge base
+3. **`rules.metta`** - Logical rules for Ethiopian recipe recommendation reasoning
+4. **`agent.metta`** - Advanced agent implementation with Ethiopian culinary cognitive functions
 
 ## Key Features
 
-### 1. Backward Chaining with Proof Construction
+### 1. Ethiopian Backward Chaining with Proof Construction
 ```metta
 (: syn (-> Atom Nat Atom Atom))
 ```

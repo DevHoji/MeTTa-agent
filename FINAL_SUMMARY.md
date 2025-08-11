@@ -1,34 +1,34 @@
-# Recipe Recommendation Agent - Final Clean Project
+# Ethiopian Recipe Recommendation Agent - Final Clean Project 🇪🇹
 
 ## 🎯 Project Overview
 
-You now have a **clean, professional Recipe Recommendation Agent** that implements **symbolic cognitive architecture** with **backward chaining** reasoning. The agent can answer complex questions by reasoning through multiple steps, even when answers aren't directly stored in the knowledge base.
+You now have a **clean, professional Ethiopian Recipe Recommendation Agent** that implements **symbolic cognitive architecture** with **backward chaining** reasoning. The agent can answer complex questions about Ethiopian cuisine by reasoning through multiple steps, even when answers aren't directly stored in the knowledge base.
 
 ## 📁 Clean Project Structure
 
-### Core Files (5 files):
-1. **`working_agent.metta`** - Complete agent (loads silently, no output)
-2. **`knowledge_base.metta`** - Facts about ingredients and recipes
-3. **`rules.metta`** - Logical reasoning rules
-4. **`agent.metta`** - Advanced cognitive functions
-5. **`ask_questions.metta`** - Where you test the agent
+### Core Files (4 files):
+1. **`knowledge_base.metta`** - Facts about Ethiopian ingredients and recipes (doro, berbere, injera, etc.)
+2. **`rules.metta`** - Logical reasoning rules for Ethiopian cuisine
+3. **`agent.metta`** - Advanced cognitive functions for Ethiopian recipe analysis
+4. **`ask_questions.metta`** - Where you test the Ethiopian recipe agent
 
 ### Documentation Files:
-6. **`questions_list.md`** - All questions you can ask (copy from here)
-7. **`project_explanation.md`** - Detailed technical explanation
-8. **`FINAL_SUMMARY.md`** - This summary
+5. **`questions_list.md`** - All Ethiopian recipe questions you can ask (copy from here)
+6. **`project_explanation.md`** - Detailed technical explanation
+7. **`FINAL_SUMMARY.md`** - This summary
+8. **`HOW_TO_USE.md`** - Step-by-step usage guide
 
-## 🚀 How to Test Your Agent
+## 🚀 How to Test Your Ethiopian Recipe Agent
 
 ### Step 1: Load the Agent
 ```bash
-metta working_agent.metta
+metta ask_questions.metta
 ```
 **Expected output**: Silent loading (just empty brackets `[()]`)
 
-### Step 2: Ask Questions
+### Step 2: Ask Ethiopian Recipe Questions
 1. **Open**: `ask_questions.metta`
-2. **Copy**: Any question from `questions_list.md`
+2. **Copy**: Any Ethiopian recipe question from `questions_list.md`
 3. **Paste**: In the "YOUR QUESTION GOES HERE" section
 4. **Run**: `metta ask_questions.metta`
 5. **See**: Proof-based answer!

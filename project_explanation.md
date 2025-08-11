@@ -1,32 +1,31 @@
-# Recipe Recommendation Agent - Detailed Project Explanation
+# Ethiopian Recipe Recommendation Agent - Detailed Project Explanation 🇪🇹
 
 ## Project Overview
 
-This is a **Recipe Recommendation Agent** that implements a **Symbolic Cognitive Architecture** using **backward chaining** reasoning in MeTTa. The agent can answer complex questions about recipes by reasoning through multiple steps, even when the answer isn't directly stored in the knowledge base.
+This is an **Ethiopian Recipe Recommendation Agent** that implements a **Symbolic Cognitive Architecture** using **backward chaining** reasoning in MeTTa. The agent can answer complex questions about Ethiopian cuisine by reasoning through multiple steps, even when the answer isn't directly stored in the knowledge base.
 
 ## Project Structure
 
 ### Core Files:
-1. **`working_agent.metta`** - Complete agent implementation
-2. **`knowledge_base.metta`** - Facts about ingredients and recipes  
-3. **`rules.metta`** - Logical reasoning rules
-4. **`agent.metta`** - Advanced cognitive functions
-5. **`ask_questions.metta`** - Interactive testing interface
-6. **`questions_list.md`** - Complete list of questions you can ask
+1. **`knowledge_base.metta`** - Facts about Ethiopian ingredients and recipes (doro, berbere, injera, etc.)
+2. **`rules.metta`** - Logical reasoning rules for Ethiopian cuisine
+3. **`agent.metta`** - Advanced cognitive functions for Ethiopian recipe analysis
+4. **`ask_questions.metta`** - Interactive testing interface with Ethiopian knowledge
+5. **`questions_list.md`** - Complete list of Ethiopian recipe questions you can ask
 
 ---
 
 ## File-by-File Detailed Explanation
 
-### 1. knowledge_base.metta - The Agent's Memory
+### 1. knowledge_base.metta - The Agent's Ethiopian Culinary Memory
 
-This file contains all the **declarative knowledge** (facts) that the agent knows:
+This file contains all the **declarative knowledge** (facts) that the agent knows about Ethiopian cuisine:
 
-#### Ingredient Properties (Lines 14-37):
+#### Ethiopian Ingredient Properties (Lines 14-37):
 ```metta
-!(add-atom &kb (: protein-chicken (HasProperty chicken protein)))
-!(add-atom &kb (: protein-tofu (HasProperty tofu protein)))
-!(add-atom &kb (: veg-broccoli (HasProperty broccoli vegetable)))
+!(add-atom &kb (: available-doro (HasIngredient doro)))           ;; Chicken - ዶሮ
+!(add-atom &kb (: available-berbere (HasIngredient berbere)))     ;; Berbere spice - በርበሬ
+!(add-atom &kb (: available-injera (HasIngredient injera)))       ;; Injera - እንጀራ
 ```
 
 **What this does:**

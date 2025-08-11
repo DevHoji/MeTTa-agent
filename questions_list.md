@@ -168,7 +168,7 @@
 
 ### 14. Is Doro Wat vegetarian? - ዶሮ ወጥ የቬጀቴሪያን ነው?
 ```metta
-!(syn &kb (fromNumber 4) (: $proof (IsVegetarianRecipe doro_wat)))
+!(syn &kb (fromNumber 4) (: $proof (IsnotVegetarianRecipe doro_wat)))
 !(syn &kb (fromNumber 3) (: $proof (NotVegetarian doro_wat $explanation)))
 ```
 **Expected Output**: Empty list `[]`

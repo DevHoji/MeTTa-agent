@@ -1,73 +1,79 @@
-# Recipe Recommendation Agent - How to Use
+# Ethiopian Recipe Recommendation Agent - How to Use 🇪🇹
 
 ## 🎯 Quick Start
 
 ### Step 1: Choose a Question
-Open `questions_list.md` and copy any question you want to ask.
+Open `questions_list.md` and copy any Ethiopian recipe question you want to ask.
 
 ### Step 2: Ask the Question
 1. Open `ask_questions.metta`
-2. Find line 120: `!(syn &kb (fromNumber 4) (: $proof (CanMake chicken_stirfry)))`
+2. Find line 435: `!(syn &kb (fromNumber 4) (: $proof (CanMake doro_wat)))`
 3. Replace it with your chosen question
 4. Save the file
 
 ### Step 3: Get the Answer
 Run: `metta ask_questions.metta`
 
-## 📋 Example Usage
+## 📋 Ethiopian Recipe Examples
 
-### Example 1: Basic Recipe Question
-**Question**: Can we make chicken stir fry?
-**Code**: `!(syn &kb (fromNumber 4) (: $proof (CanMake chicken_stirfry)))`
-**Result**: `[(: ((recipe-possible-rule stirfry-chicken) available-chicken) (CanMake chicken_stirfry))]`
-**Meaning**: "Yes, we can make chicken stir fry because we have chicken and the recipe requires chicken"
+### Example 1: Basic Ethiopian Recipe Question
+**Question**: Can we make Doro Wat (Ethiopian chicken stew)?
+**Code**: `!(syn &kb (fromNumber 4) (: $proof (CanMake doro_wat)))`
+**Result**: `[(: ((recipe-possible-rule doro-wat-doro) available-doro) (CanMake doro_wat))]`
+**Meaning**: "Yes, we can make Doro Wat because we have chicken (doro) and the recipe requires chicken"
 
-### Example 2: Dietary Restriction Question
-**Question**: What can Alice (vegetarian) make?
-**Code**: `!(syn &kb (fromNumber 5) (: $proof (RecommendFor $recipe alice)))`
-**Result**: Multiple complex proofs showing vegetarian recipes
-**Meaning**: "Alice can make tofu scramble and pasta dish because they use only vegetarian ingredients"
+### Example 2: Ethiopian Dietary Restriction Question
+**Question**: What can Almaz (vegetarian) make?
+**Code**: `!(syn &kb (fromNumber 3) (: $proof (UserRecommendation almaz $recommendation)))`
+**Result**: `[(: almaz-recommendations (UserRecommendation almaz "Almaz can make 3 vegetarian Ethiopian dishes: Shiro Wat, Gomen, and Misir Wat"))]`
+**Meaning**: "Almaz can make Shiro Wat (chickpea stew), Gomen (collard greens), and Misir Wat (lentil stew) - all traditional Ethiopian vegetarian dishes"
 
-### Example 3: Nutritional Question
-**Question**: What high-protein recipes can Bob make?
-**Code**: `!(syn &kb (fromNumber 5) (: $proof (RecommendFor $recipe bob)))`
-**Result**: Proofs showing high-protein recipes Bob can make
-**Meaning**: "Bob can make chicken stir fry and tofu scramble because they're high in protein"
+### Example 3: Ethiopian Nutritional Analysis
+**Question**: What high-protein Ethiopian dishes can Dawit make?
+**Code**: `!(syn &kb (fromNumber 3) (: $proof (UserRecommendation dawit $recommendation)))`
+**Result**: `[(: dawit-recommendations (UserRecommendation dawit "Dawit can make 4 high-protein Ethiopian dishes: Doro Wat, Kitfo, Shiro Wat, and Misir Wat"))]`
+**Meaning**: "Dawit can make Doro Wat (chicken stew), Kitfo (beef tartare), Shiro Wat (chickpea stew), and Misir Wat (lentil stew) - all high in protein"
 
-## 🔍 Understanding Results
+### Example 4: Ethiopian Spice Intelligence
+**Question**: How spicy is mitmita?
+**Code**: `!(syn &kb (fromNumber 5) (: $proof (HeatLevel mitmita $level)))`
+**Result**: `[(: mitmita-hot (HeatLevel mitmita extremely_hot))]`
+**Meaning**: "Mitmita is extremely hot - it's a traditional Ethiopian spice blend that's even hotter than berbere"
 
-### Result Format:
+## 🔍 Understanding Ethiopian Recipe Results
+
+### Ethiopian Proof Format:
 ```
 (: PROOF CONCLUSION)
 ```
 
-### Simple Proof:
+### Simple Ethiopian Proof:
 ```
-(: rule-name (Conclusion))
+(: available-doro (HasIngredient doro))
 ```
-**Meaning**: Used one rule to reach the conclusion
+**Meaning**: We have doro (chicken) available
 
-### Complex Proof:
+### Complex Ethiopian Proof:
 ```
-(: ((rule1 fact1) rule2) (Conclusion))
+(: ((recipe-possible-rule doro-wat-doro) available-doro) (CanMake doro_wat))
 ```
-**Meaning**: Used rule1 with fact1, then rule2 to reach the conclusion
+**Meaning**: We can make Doro Wat because the recipe requires chicken and we have chicken
 
-### Multiple Results:
+### Multiple Ethiopian Results:
 ```
-[(: proof1 conclusion1), (: proof2 conclusion2)]
+[(: almaz-shiro (CanMake shiro_wat)), (: almaz-gomen (CanMake gomen_dish))]
 ```
-**Meaning**: Found multiple ways to reach conclusions
+**Meaning**: Almaz can make both Shiro Wat and Gomen
 
-## 📚 Available Questions
+## 🇪🇹 Available Ethiopian Questions
 
-See `questions_list.md` for 50+ questions you can ask, including:
+See `questions_list.md` for 50+ Ethiopian recipe questions you can ask, including:
 
-- **Recipe Availability**: What recipes can we make?
-- **Dietary Restrictions**: What vegetarian recipes exist?
-- **Nutritional Preferences**: What high-protein recipes are available?
-- **Time Preferences**: What quick recipes can we make?
-- **Ingredient Reasoning**: What protein dishes are possible?
+- **Ethiopian Recipe Availability**: Can we make Doro Wat? Kitfo? Shiro Wat?
+- **Ethiopian Dietary Restrictions**: What vegetarian Ethiopian dishes exist?
+- **Ethiopian Nutritional Analysis**: Is Doro Wat high in protein?
+- **Ethiopian Cultural Intelligence**: How spicy is berbere? What's culturally significant?
+- **Ethiopian User Recommendations**: What can Dawit/Almaz/Meron make?
 - **Complex Multi-Step**: What recipes require specific ingredients?
 
 ## 🧠 How the Agent Reasons
